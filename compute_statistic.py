@@ -17,6 +17,9 @@ from astropy.cosmology import Planck18 as cos
 # For Power Spectrum and noise calculations
 import tools21cm as t2c
 
+# cosmology
+h = 0.6774
+
 # Directory where the data is stored
 # ddir = '/data/cluster/agorce/SKA_chapter_simulations/'
 ddir = './SKA_chapter_simulations/' # This folder can be created inside the repository folder. It will be ignored during the git commit.
@@ -34,7 +37,7 @@ file = ddir+'Lightcone_FID_400_Samples.h5'
 with h5py.File(file, 'r') as f:
     frequencies = f['frequencies'][...]
     redshifts = f['redshifts'][...]
-    box_length = float(f['box_length'][0])  # Mpc
+    box_length = float(f['box_length'][0])/h  # Mpc
     box_dim = int(f['ngrid'][0])
     n_samp = int(f['nrealisations'][0])
 nfreq = frequencies.size
