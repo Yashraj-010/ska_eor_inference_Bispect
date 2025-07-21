@@ -23,7 +23,7 @@ h = 0.6774
 # Directory where the data is stored
 # ddir = '/data/cluster/agorce/SKA_chapter_simulations/'
 ddir = '../SKA_chapter_simulations/' # This folder can be created inside the repository folder. It will be ignored during the git commit.
-output_dir = './output/'
+output_dir = './SKA_chapter_statistics/'
 
 # Overwriting existing statistic
 overwrite = False #True
@@ -155,7 +155,13 @@ for fname in files:
 
         # Save the computed statistics to the new output HDF5 file
         with h5py.File(output_fname, 'w') as f_out:
-            # Renamed dataset attributes to 'clean', 'noise', 'obs'
+            # Create datasets for metadata
+            f_out.create_dataset('frequencies', data=frequencies)
+            f_out.create_dataset('redshifts', data=redshifts)
+            f_out.create_dataset('box_length', data=np.array([box_length*h])) # Store original Mpc/h value
+            f_out.create_dataset('ngrid', data=np.array([box_dim]))
+            f_out.create_dataset('nrealisations', data=np.array([n_samp]))
+            # Summary Dataset attributes: 'clean', 'noise', 'obs'
             f_out.create_dataset('clean', data=ps_clean, shape=ps_clean.shape)
             f_out.create_dataset('bins', data=ks, shape=ks.shape) # Save k-bins
             if 'FID' in fname: # Only save noise and observed PS for FID files
