@@ -22,14 +22,14 @@ h = 0.6774
 
 # Directory where the data is stored
 # ddir = '/data/cluster/agorce/SKA_chapter_simulations/'
-ddir = './SKA_chapter_simulations/' # This folder can be created inside the repository folder. It will be ignored during the git commit.
+ddir = '../SKA_chapter_simulations/' # This folder can be created inside the repository folder. It will be ignored during the git commit.
 output_dir = './output/'
 
 # Overwriting existing statistic
 overwrite = False #True
 
 # Number of CPUs to parallelise over for noise generation
-njobs = 1 #4
+njobs = 16 #4
 
 # Global parameters
 # Read one h5py file to obtain metadata on simulations
@@ -60,8 +60,8 @@ int_time = 10.       # seconds
 total_int_time = 6.  # hours per day
 declination = -30.0  # declination of the field in degrees
 bmax = 2. * units.km # km
-subarray_type = "AAstar" # Type of subarray for noise generation (e.g., "AAstar", "AA4")
-save_uvmap = ddir+'uvmap_AAstar_6.0h_perday.h5' # save uv coverage to re-use for each realisation
+subarray_type = "AA4" # Type of subarray for noise generation (e.g., "AAstar", "AA4")
+save_uvmap = ddir+'uvmap_AA4.h5' # save uv coverage to re-use for each realisation
 
 # Statistics estimation
 
